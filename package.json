@@ -1,0 +1,10 @@
+{
+  "name": "adminlte-v4-angular",
+  "version": "4.9.1",
+  "description": "AdminLTE v4 converted to Angular 19+ with Standalone Components and Reactive Signals",
+  "scripts": {
+    "start": "npm --prefix adminlte-angular start",
+    "build": "npm --prefix adminlte-angular run build",
+    "watch": "npm --prefix adminlte-angular run watch"
+  }
+}

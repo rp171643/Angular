@@ -1,0 +1,133 @@
+<div class="app-content-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-sm-6">
+        <h1 class="mb-0 fs-3">{{ currentLayout().title }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a routerLink="/dashboard/v1">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/layout/fixed-sidebar">Layout</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ currentLayout().title }}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-content">
+  <div class="container-fluid">
+    <!-- Callout with explanation -->
+    <div class="callout callout-info mb-4">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div>
+          <h5 class="fw-semibold mb-1">{{ currentLayout().headline }}</h5>
+          <p class="mb-0 text-secondary">{{ currentLayout().description }}</p>
+        </div>
+        <span class="badge text-bg-primary fs-6 px-3 py-2 font-monospace">{{ currentLayout().classes }}</span>
+      </div>
+    </div>
+
+    <!-- Quick Layout Options Grid -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h3 class="card-title"><i class="bi bi-grid-3x3-gap me-2"></i>All 12 Layout Options</h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-2">
+          @for (option of allLayouts; track option.slug) {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <a
+                [routerLink]="['/layout', option.slug]"
+                class="btn w-100 text-start d-flex align-items-center justify-content-between"
+                [class.btn-primary]="option.slug === currentSlug()"
+                [class.btn-outline-secondary]="option.slug !== currentSlug()"
+              >
+                <span class="text-truncate">{{ option.title }}</span>
+                <i class="bi bi-arrow-right-short ms-1"></i>
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout Details Card -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h3 class="card-title">{{ currentLayout().title }} Demo Card</h3>
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                (click)="toggleCollapse()"
+                title="Collapse"
+              >
+                <i [class]="isCardCollapsed ? 'bi bi-plus-lg' : 'bi bi-dash-lg'"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-tool"
+                (click)="removeCard()"
+                title="Remove"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+          @if (!isCardRemoved) {
+            @if (!isCardCollapsed) {
+              <div class="card-body">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <h6 class="fw-bold mb-2">CSS Body / Wrapper Classes:</h6>
+                    <pre class="bg-body-secondary p-3 rounded"><code>{{ currentLayout().codeSnippet }}</code></pre>
+
+                    <h6 class="fw-bold mt-3 mb-2">Features & Capabilities:</h6>
+                    <ul class="list-group list-group-flush">
+                      @for (feature of currentLayout().features; track feature) {
+                        <li class="list-group-item bg-transparent px-0 py-1">
+                          <i class="bi bi-check-circle-fill text-success me-2"></i>{{ feature }}
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="fw-bold mb-2">Interactive Test Controls:</h6>
+                    <p class="text-secondary small">Click the buttons below to test and observe dynamic layout state transitions:</p>
+                    <div class="d-flex flex-column gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                        (click)="sidebarService.toggleSidebar()"
+                      >
+                        <span><i class="bi bi-layout-sidebar-inset me-2"></i>Toggle Sidebar Collapse</span>
+                        <span class="badge text-bg-secondary">{{ sidebarService.isCollapsed() ? 'Collapsed' : 'Expanded' }}</span>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary d-flex align-items-center justify-content-between"
+                        (click)="toggleRtl()"
+                      >
+                        <span><i class="bi bi-arrow-left-right me-2"></i>Toggle RTL Direction</span>
+                        <span class="badge text-bg-secondary">{{ isRtl ? 'RTL' : 'LTR' }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-secondary small">
+                AdminLTE v4 Angular Layout Engine &bull; {{ currentLayout().title }}
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

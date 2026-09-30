@@ -1,0 +1,46 @@
+<div class="lockscreen w-100">
+  <main class="lockscreen-wrapper">
+    <h1 class="lockscreen-logo">
+      <a routerLink="/dashboard/v1" class="text-decoration-none"><b>Admin</b>LTE</a>
+    </h1>
+
+    <div class="lockscreen-name">John Doe</div>
+
+    <div class="lockscreen-item shadow-sm">
+      <div class="lockscreen-image">
+        <img src="/assets/img/user1-128x128.jpg" alt="John Doe" />
+      </div>
+
+      <form class="lockscreen-credentials" (submit)="unlock($event)">
+        <label class="visually-hidden" for="lockscreenPassword">Password</label>
+        <div class="input-group">
+          <input
+            id="lockscreenPassword"
+            type="password"
+            class="form-control shadow-none"
+            placeholder="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+          <div class="input-group-text border-0 bg-transparent px-1">
+            <button type="submit" class="btn shadow-none" aria-label="Sign in">
+              <i class="bi bi-box-arrow-right text-body-secondary"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="help-block text-center">Enter your password to retrieve your session</div>
+    <div class="text-center my-2">
+      <a routerLink="/auth/login" class="text-decoration-none">Or sign in as a different user</a>
+    </div>
+    <div class="lockscreen-footer text-center">
+      Copyright &copy; 2014-2026 &nbsp;
+      <b><a href="https://adminlte.io" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover text-decoration-none" target="_blank" rel="noopener">AdminLTE.io</a></b>
+      <br />
+      All rights reserved
+    </div>
+  </main>
+</div>

@@ -1,0 +1,16 @@
+<div class="app-wrapper">
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+
+  @if (sidebarService.isCollapsed()) {
+    <div class="sidebar-hover-sensor" (mouseenter)="sidebarService.setHover(true)"></div>
+  }
+
+  @if (sidebarService.isMobileOpen()) {
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobileSidebar()"></div>
+  }
+</div>

@@ -1,0 +1,210 @@
+<aside
+  class="app-sidebar bg-body-secondary shadow"
+  data-bs-theme="dark"
+  (mouseenter)="sidebarService.setHover(true)"
+  (mouseleave)="sidebarService.setHover(false)"
+>
+  <div class="sidebar-brand">
+    <a routerLink="/dashboard/v1" class="brand-link text-decoration-none">
+      <img src="/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
+      <span class="brand-text fw-light">AdminLTE 4</span>
+    </a>
+  </div>
+
+  <!-- Sidebar Search -->
+  <div class="sidebar-search p-2" role="search">
+    <div class="input-group input-group-sm">
+      <input
+        type="search"
+        class="form-control bg-dark text-light border-secondary"
+        placeholder="Filter menu…"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+      />
+      <span class="input-group-text bg-dark text-secondary border-secondary">
+        <i class="bi bi-search"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <nav class="mt-2" aria-label="Main navigation">
+      <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
+        @for (item of filteredNavItems(); track item.title + (item.route || '')) {
+          @if (item.isHeader) {
+            <li class="nav-header text-uppercase fw-bold text-secondary px-3 pt-3 pb-1 fs-7">
+              {{ item.title }}
+            </li>
+          } @else if (item.children && item.children.length > 0) {
+            <li class="nav-item" [class.menu-open]="item.isOpen">
+              <a
+                href="#"
+                class="nav-link"
+                [class.active]="item.isOpen"
+                (click)="toggleMenu(item, $event)"
+              >
+                @if (item.icon) {
+                  <i class="nav-icon {{ item.icon }}"></i>
+                }
+                <p>
+                  {{ item.title }}
+                  @if (item.badge) {
+                    <span [class]="'nav-badge badge ' + item.badge.class">{{ item.badge.text }}</span>
+                  }
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              @if (item.isOpen) {
+                <ul class="nav nav-treeview">
+                  @for (child of item.children; track child.title + (child.route || '')) {
+                    @if (child.children && child.children.length > 0) {
+                      <li class="nav-item" [class.menu-open]="child.isOpen">
+                        <a
+                          href="#"
+                          class="nav-link"
+                          [class.active]="child.isOpen"
+                          (click)="toggleMenu(child, $event)"
+                        >
+                          <i class="nav-icon {{ child.icon || 'bi bi-circle' }}"></i>
+                          <p>
+                            {{ child.title }}
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                          </p>
+                        </a>
+                        @if (child.isOpen) {
+                          <ul class="nav nav-treeview">
+                            @for (subChild of child.children; track subChild.title + (subChild.route || '')) {
+                              @if (subChild.children && subChild.children.length > 0) {
+                                <li class="nav-item" [class.menu-open]="subChild.isOpen">
+                                  <a
+                                    href="#"
+                                    class="nav-link"
+                                    [class.active]="subChild.isOpen"
+                                    (click)="toggleMenu(subChild, $event)"
+                                  >
+                                    <i class="nav-icon {{ subChild.icon || 'bi bi-circle' }}"></i>
+                                    <p>
+                                      {{ subChild.title }}
+                                      <i class="nav-arrow bi bi-chevron-right"></i>
+                                    </p>
+                                  </a>
+                                  @if (subChild.isOpen) {
+                                    <ul class="nav nav-treeview">
+                                      @for (sub3 of subChild.children; track sub3.title) {
+                                        <li class="nav-item">
+                                          <a href="#" class="nav-link" (click)="$event.preventDefault()">
+                                            <i class="nav-icon {{ sub3.icon || 'bi bi-circle' }}"></i>
+                                            <p>{{ sub3.title }}</p>
+                                          </a>
+                                        </li>
+                                      }
+                                    </ul>
+                                  }
+                                </li>
+                              } @else {
+                                <li class="nav-item">
+                                  @if (subChild.route && subChild.route !== '#') {
+                                    <a
+                                      [routerLink]="subChild.route"
+                                      routerLinkActive="active"
+                                      [routerLinkActiveOptions]="{exact: false}"
+                                      class="nav-link"
+                                      (click)="onItemClick()"
+                                    >
+                                      <i class="nav-icon {{ subChild.icon || 'bi bi-circle' }}"></i>
+                                      <p>{{ subChild.title }}</p>
+                                    </a>
+                                  } @else {
+                                    <a href="#" class="nav-link" (click)="$event.preventDefault()">
+                                      <i class="nav-icon {{ subChild.icon || 'bi bi-circle' }}"></i>
+                                      <p>{{ subChild.title }}</p>
+                                    </a>
+                                  }
+                                </li>
+                              }
+                            }
+                          </ul>
+                        }
+                      </li>
+                    } @else {
+                      <li class="nav-item">
+                        @if (child.route && child.route !== '#') {
+                          <a
+                            [routerLink]="child.route"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: false}"
+                            class="nav-link"
+                            (click)="onItemClick()"
+                          >
+                            <i class="nav-icon {{ child.icon || 'bi bi-circle' }}"></i>
+                            <p>{{ child.title }}</p>
+                          </a>
+                        } @else {
+                          <a href="#" class="nav-link" (click)="$event.preventDefault()">
+                            <i class="nav-icon {{ child.icon || 'bi bi-circle' }}"></i>
+                            <p>{{ child.title }}</p>
+                          </a>
+                        }
+                      </li>
+                    }
+                  }
+                </ul>
+              }
+            </li>
+          } @else {
+            <li class="nav-item">
+              @if (item.route && item.route !== '#') {
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link"
+                  (click)="onItemClick()"
+                >
+                  @if (item.icon) {
+                    <i class="nav-icon {{ item.icon }}"></i>
+                  }
+                  <p>
+                    {{ item.title }}
+                    @if (item.badge) {
+                      <span [class]="'nav-badge badge ' + item.badge.class">{{ item.badge.text }}</span>
+                    }
+                  </p>
+                </a>
+              } @else {
+                <a
+                  href="#"
+                  class="nav-link"
+                  (click)="$event.preventDefault()"
+                >
+                  @if (item.icon) {
+                    <i class="nav-icon {{ item.icon }}"></i>
+                  }
+                  <p>
+                    {{ item.title }}
+                    @if (item.badge) {
+                      <span [class]="'nav-badge badge ' + item.badge.class">{{ item.badge.text }}</span>
+                    }
+                  </p>
+                </a>
+              }
+            </li>
+          }
+        }
+      </ul>
+
+      <!-- Docs CTA (bottom of sidebar) -->
+      <div class="p-3 mt-3 border-top border-secondary border-opacity-25">
+        <a
+          routerLink="/docs/introduction"
+          class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
+          (click)="onItemClick()"
+        >
+          <i class="bi bi-book" aria-hidden="true"></i>
+          View documentation
+        </a>
+      </div>
+    </nav>
+  </div>
+</aside>
+

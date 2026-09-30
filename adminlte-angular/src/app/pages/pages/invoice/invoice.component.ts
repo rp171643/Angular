@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-invoice',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './invoice.component.html'
+})
+export class InvoiceComponent {}

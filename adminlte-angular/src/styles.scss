@@ -1,0 +1,228 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import './assets/css/adminlte.min.css';
+@import 'jsvectormap/dist/jsvectormap.min.css';
+
+/* Custom Angular enhancements for AdminLTE */
+:root {
+  --admin-lte-transition: all 0.3s ease-in-out;
+  --lte-sidebar-width: 250px;
+}
+
+/* Base HTML & Body Containment to prevent outer window scrolling */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+}
+
+/* Angular host elements */
+app-root,
+app-admin-layout {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+app-auth-layout {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Ensure Angular component hosts do not disrupt AdminLTE CSS Grid */
+app-header,
+app-sidebar,
+app-footer {
+  display: contents;
+}
+
+/* Layout Grid Definition: Fixed 100vh viewport */
+.app-wrapper {
+  position: relative;
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  grid-template-areas:
+    "lte-app-sidebar lte-app-header"
+    "lte-app-sidebar lte-app-main"
+    "lte-app-sidebar lte-app-footer";
+  grid-template-rows: auto 1fr auto !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  transition: grid-template-columns 0.3s ease-in-out;
+}
+
+/* When sidebar is collapsed: completely hide sidebar column so content takes 100% width */
+body.sidebar-collapse .app-wrapper {
+  grid-template-columns: 0 minmax(0, 1fr) !important;
+}
+
+/* Sidebar default state: fixed 100vh column on desktop, independent internal scrolling */
+.app-sidebar {
+  grid-area: lte-app-sidebar;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  width: var(--lte-sidebar-width, 250px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  position: relative;
+  z-index: 1038;
+  transform: none;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.app-sidebar .sidebar-brand {
+  flex: 0 0 auto;
+}
+
+.app-sidebar .sidebar-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* When collapsed on desktop: completely hide off-screen */
+body.sidebar-collapse .app-sidebar {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--lte-sidebar-width, 250px) !important;
+  transform: translateX(-100%) !important;
+  z-index: 1045 !important;
+  box-shadow: none !important;
+}
+
+/* When collapsed but user hovers mouse over it: smoothly slide in to show full menu */
+body.sidebar-collapse.sidebar-hover-show .app-sidebar,
+body.sidebar-collapse .app-sidebar:hover {
+  transform: translateX(0) !important;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Hover sensor strip along left screen edge when collapsed */
+.sidebar-hover-sensor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 100vh;
+  z-index: 1042;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Mobile responsiveness (< 992px) */
+@media (max-width: 991.98px) {
+  .app-wrapper {
+    grid-template-columns: 0 minmax(0, 1fr) !important;
+  }
+  .app-sidebar {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--lte-sidebar-width, 250px) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    z-index: 1050 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  }
+  body.sidebar-open .app-sidebar {
+    transform: translateX(0) !important;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
+/* Pinned Header & Footer */
+.app-header {
+  grid-area: lte-app-header;
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1030;
+}
+
+.app-footer {
+  grid-area: lte-app-footer;
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1030;
+}
+
+/* Main Content Area: ONLY this right-side content scrolls vertically */
+.app-main {
+  grid-area: lte-app-main;
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure routed components stretch fully in main content area */
+.app-main > * {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Clean subtle scrollbars for modern look */
+.app-main::-webkit-scrollbar,
+.sidebar-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.app-main::-webkit-scrollbar-track,
+.sidebar-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-main::-webkit-scrollbar-thumb,
+.sidebar-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(108, 117, 125, 0.4);
+  border-radius: 3px;
+}
+.app-main::-webkit-scrollbar-thumb:hover,
+.sidebar-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 117, 125, 0.7);
+}
+
+/* ApexCharts responsive containment */
+.apexcharts-canvas,
+svg.apexcharts-svg {
+  max-width: 100% !important;
+}
+
+/* Dropdown alignment */
+.dropdown-menu-end {
+  right: 0 !important;
+  left: auto !important;
+}
+
+/* Sidebar submenu animation */
+.nav-treeview {
+  transition: max-height 0.3s ease-in-out;
+}

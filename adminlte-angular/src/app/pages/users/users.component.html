@@ -1,0 +1,153 @@
+<div class="app-content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="mb-0 fs-3">Users</h1>
+      </div>
+      <div class="col-sm-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a routerLink="/dashboard/v1">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Users</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <div class="row g-2 align-items-center">
+              <div class="col-12 col-md-4">
+                <h3 class="card-title">User Directory</h3>
+              </div>
+              <div class="col-12 col-md-8">
+                <div class="d-flex flex-wrap justify-content-md-end gap-2">
+                  <div class="input-group input-group-sm w-auto">
+                    <span class="input-group-text">
+                      <i class="bi bi-search" aria-hidden="true"></i>
+                    </span>
+                    <input
+                      type="search"
+                      class="form-control"
+                      placeholder="Search users"
+                      [(ngModel)]="searchQuery"
+                      style="width: 180px"
+                    />
+                  </div>
+                  <select
+                    class="form-select form-select-sm w-auto"
+                    [(ngModel)]="selectedRole"
+                  >
+                    <option value="all">All roles</option>
+                    <option value="Administrator">Administrator</option>
+                    <option value="Editor">Editor</option>
+                    <option value="Author">Author</option>
+                    <option value="Subscriber">Subscriber</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-primary"
+                    (click)="openAddModal()"
+                  >
+                    <i class="bi bi-person-plus-fill me-1" aria-hidden="true"></i>
+                    New user
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle m-0">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (user of filteredUsers(); track user.id) {
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            [src]="user.avatar"
+                            alt=""
+                            class="img-size-32 rounded-circle me-2"
+                            style="width: 32px; height: 32px; object-fit: cover;"
+                          />
+                          <span class="fw-medium">{{ user.name }}</span>
+                        </div>
+                      </td>
+                      <td>{{ user.email }}</td>
+                      <td>
+                        <span [class]="'badge ' + user.roleBadgeClass">{{ user.role }}</span>
+                      </td>
+                      <td>
+                        <span [class]="'badge ' + (user.status === 'Active' ? 'text-bg-success' : 'text-bg-warning')">
+                          {{ user.status }}
+                        </span>
+                      </td>
+                      <td>{{ user.created }}</td>
+                      <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                          <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            title="Edit"
+                            (click)="editUser(user)"
+                          >
+                            <i class="bi bi-pencil" aria-hidden="true"></i>
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger"
+                            title="Delete"
+                            (click)="deleteUser(user)"
+                          >
+                            <i class="bi bi-trash" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="6" class="text-center py-4 text-secondary">
+                        No users match the search filter.
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-footer clearfix">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <span class="text-secondary small">Showing {{ filteredUsers().length }} users</span>
+              <ul class="pagination pagination-sm m-0">
+                <li class="page-item disabled"><a class="page-link" href="#" (click)="$event.preventDefault()">&laquo;</a></li>
+                <li class="page-item active"><a class="page-link" href="#" (click)="$event.preventDefault()">1</a></li>
+                <li class="page-item"><a class="page-link" href="#" (click)="$event.preventDefault()">2</a></li>
+                <li class="page-item"><a class="page-link" href="#" (click)="$event.preventDefault()">3</a></li>
+                <li class="page-item"><a class="page-link" href="#" (click)="$event.preventDefault()">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

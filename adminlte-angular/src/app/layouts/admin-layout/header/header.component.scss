@@ -1,0 +1,11 @@
+:host {
+  display: contents;
+}
+
+.dropdown-menu {
+  animation: fadeIn 0.15s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

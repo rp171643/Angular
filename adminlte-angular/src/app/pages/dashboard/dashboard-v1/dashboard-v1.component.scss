@@ -1,0 +1,46 @@
+.small-box {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  .inner {
+    padding: 1rem;
+    h3 { font-size: 2.2rem; font-weight: 700; margin: 0 0 10px; }
+    p { font-size: 1rem; margin-bottom: 0; }
+  }
+  .small-box-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 4rem;
+    transition: transform 0.3s linear;
+  }
+  &:hover .small-box-icon { transform: scale(1.1); }
+  .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    &:hover { color: #fff; background: rgba(0, 0, 0, 0.15); }
+  }
+}
+.direct-chat-msg {
+  display: flex;
+  flex-direction: column;
+  &.end {
+    align-items: flex-end;
+    .direct-chat-text { background-color: var(--bs-primary); color: #fff; }
+  }
+}
+.direct-chat-text {
+  border-radius: 0.5rem;
+  background-color: var(--bs-tertiary-bg);
+  padding: 8px 12px;
+  max-width: 80%;
+  margin-top: 4px;
+}

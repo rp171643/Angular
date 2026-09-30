@@ -1,0 +1,109 @@
+<div class="app-content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="mb-0 fs-3">Theme Customize</h1>
+      </div>
+      <div class="col-sm-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a routerLink="/dashboard/v1">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Theme Customize</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="callout callout-info mb-4">
+      <h5 class="fw-semibold">AdminLTE 4 Theme Customizer</h5>
+      <p class="mb-1">
+        Pick a colour mode and a background for the sidebar, navbar, and card components.
+        Each choice is applied live to the application theme. In AdminLTE 4, theming is built with
+        Bootstrap 5 color variables and <code>data-bs-theme</code> attributes.
+      </p>
+    </div>
+
+    <!-- Presets -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h3 class="card-title"><i class="bi bi-palette-fill me-2"></i>Theme Presets</h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          @for (preset of presets; track preset.name) {
+            <div class="col-6 col-md-3">
+              <div
+                class="card border h-100 text-center p-3"
+                [class.border-primary]="selectedPreset === preset.name"
+                [class.shadow-sm]="selectedPreset === preset.name"
+                (click)="applyPreset(preset)"
+                style="cursor: pointer;"
+              >
+                <div class="d-flex justify-content-center gap-1 mb-2">
+                  <span class="d-inline-block rounded-circle" [style.background-color]="preset.headerColor" style="width: 20px; height: 20px;"></span>
+                  <span class="d-inline-block rounded-circle" [style.background-color]="preset.sidebarColor" style="width: 20px; height: 20px;"></span>
+                  <span class="d-inline-block rounded-circle" [style.background-color]="preset.accentColor" style="width: 20px; height: 20px;"></span>
+                </div>
+                <h6 class="mb-0 fw-semibold">{{ preset.name }}</h6>
+                <small class="text-secondary">{{ preset.description }}</small>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Color Pickers -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header">
+            <h3 class="card-title">Color Mode (Light / Dark)</h3>
+          </div>
+          <div class="card-body">
+            <p class="text-secondary small">Switch the entire application color mode:</p>
+            <div class="btn-group w-100" role="group">
+              <button
+                type="button"
+                class="btn"
+                [class.btn-primary]="themeService.currentMode() === 'light'"
+                [class.btn-outline-primary]="themeService.currentMode() !== 'light'"
+                (click)="themeService.setTheme('light')"
+              >
+                <i class="bi bi-sun-fill me-2"></i>Light Mode
+              </button>
+              <button
+                type="button"
+                class="btn"
+                [class.btn-primary]="themeService.currentMode() === 'dark'"
+                [class.btn-outline-primary]="themeService.currentMode() !== 'dark'"
+                (click)="themeService.setTheme('dark')"
+              >
+                <i class="bi bi-moon-stars-fill me-2"></i>Dark Mode
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header">
+            <h3 class="card-title">Active Configuration Output</h3>
+          </div>
+          <div class="card-body">
+            <pre class="bg-body-secondary p-3 rounded mb-0"><code>&lt;!-- Generated AdminLTE 4 Attributes --&gt;
+&lt;html data-bs-theme="{{ themeService.currentMode() }}"&gt;
+&lt;aside class="app-sidebar bg-body-secondary" data-bs-theme="{{ sidebarTheme }}"&gt;
+&lt;nav class="app-header navbar navbar-expand bg-body"&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

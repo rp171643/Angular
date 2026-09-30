@@ -1,0 +1,120 @@
+<div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">Editors</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editors</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-12">
+                <div class="callout callout-info">
+                  AdminLTE doesn't bundle a rich text editor. This page uses
+                  <a
+                    href="https://quilljs.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="callout-link"
+                    >Quill 2</a
+                  >, the recommended editor integration. See the
+                  <a href="../docs/integrations.html" class="callout-link"
+                    >Recommended Integrations</a
+                  >
+                  page for markdown editors and other alternatives.
+                </div>
+              </div>
+
+              <!-- Quill snow theme -->
+              <div class="col-lg-7">
+                <div class="card card-primary card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Snow theme &mdash; full toolbar</div>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h5">Compose an announcement</h2>
+                    <p class="text-body-secondary">
+                      The classic "flat toolbar on top" editor. The toolbar below is fully
+                      configurable &mdash; add or remove controls per use case.
+                    </p>
+                    <div id="snow-editor" style="height: 18rem">
+                      <h2>Quarterly product update</h2>
+                      <p>
+                        Welcome to the <strong>Q3 review</strong>. This quarter the team shipped
+                        three headline features and closed out 47 reported bugs.
+                      </p>
+                      <ul>
+                        <li>New onboarding flow &mdash; trial activation up 12%</li>
+                        <li>Streaming exports &mdash; large reports no longer time out</li>
+                        <li>Single sign-on (SAML) for enterprise plans</li>
+                      </ul>
+                      <blockquote>
+                        "The new exports alone save our analysts a full day every week." &mdash;
+                        beta customer
+                      </blockquote>
+                      <p>
+                        Next quarter's focus is
+                        <em>performance, accessibility and the public API</em>. Edit this draft and
+                        leave your comments inline.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-footer text-body-secondary small">
+                    Powered by
+                    <a
+                      href="https://quilljs.com/"
+                      target="_blank"
+                      rel="noopener"
+                      class="link-body-emphasis"
+                      >Quill</a
+                    >
+                    &mdash; vanilla JS, no jQuery required.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quill bubble theme -->
+              <div class="col-lg-5">
+                <div class="card card-success card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Bubble theme &mdash; inline editing</div>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h5">Edit in place</h2>
+                    <p class="text-body-secondary">
+                      No visible chrome until you need it: select any text below and a floating
+                      toolbar appears &mdash; ideal for editable page sections, comments, or notes.
+                    </p>
+                    <div id="bubble-editor" class="border rounded" style="min-height: 10rem">
+                      <p>
+                        Our support hours are
+                        <strong>Monday to Friday, 9:00&ndash;17:00 (CET)</strong>. Requests
+                        submitted outside these hours are picked up the next business day.
+                      </p>
+                      <p>
+                        For urgent production incidents, page the on-call engineer through the
+                        status dashboard instead of filing a ticket.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-footer text-body-secondary small">
+                    Same Quill instance, different theme &mdash; load
+                    <code class="text-body-emphasis">quill.bubble.css</code> instead of
+                    <code class="text-body-emphasis">quill.snow.css</code>.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

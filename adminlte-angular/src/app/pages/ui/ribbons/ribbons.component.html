@@ -1,0 +1,230 @@
+<!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">Ribbons</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Ribbons</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="callout callout-info mb-4">
+              <p>
+                A ribbon is pinned to the top corner of its nearest positioned ancestor. Cards are
+                already positioned, so
+                <code>.ribbon-wrapper</code> works inside one as-is — on any other element, add
+                <code>.position-relative</code> to the parent.
+              </p>
+              <p class="mb-0">
+                Keep labels short. The banner is clipped to the corner, so only about
+                <code>64px</code> of it is readable at the default size — roughly six characters.
+                Step up to <code>.ribbon-lg</code> or <code>.ribbon-xl</code> for longer words.
+              </p>
+            </div>
+
+            <!--begin::Colors-->
+            <h5 class="mb-3">Colors</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-primary">New</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">primary</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-primary </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-secondary">Draft</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">secondary</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-secondary </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-success">Live</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">success</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-success </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-danger">Hot</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">danger</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-danger </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-warning">Beta</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">warning</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-warning </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-info">Tip</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">info</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-info </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-dark">Pro</div>
+                  </div>
+                  <div class="card-body" style="min-height: 5rem">
+                    <h6 class="card-title text-capitalize mb-0">dark</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis"> .ribbon.text-bg-dark </code>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <!--end::Colors-->
+
+            <!--begin::Sizes-->
+            <h5 class="mb-3 mt-4">Sizes</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-primary">Default</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem">
+                    <h6 class="card-title mb-0">Default</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper</code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-lg">
+                    <div class="ribbon text-bg-success">Large</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem">
+                    <h6 class="card-title mb-0">Large</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper.ribbon-lg</code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-xl">
+                    <div class="ribbon text-bg-danger">X-Large</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem">
+                    <h6 class="card-title mb-0">Extra large</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper.ribbon-xl</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <!--end::Sizes-->
+
+            <!--begin::Outside a card-->
+            <h5 class="mb-3 mt-4">Outside a card</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div
+                  class="position-relative overflow-hidden rounded border bg-body p-4"
+                  style="min-height: 10rem"
+                >
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-warning">New</div>
+                  </div>
+                  <h6>Any positioned element</h6>
+                  <p class="mb-0">
+                    The wrapper only needs an ancestor with
+                    <code>position: relative</code>. Add <code>.overflow-hidden</code> as well when
+                    the parent is rounded, so the banner is clipped to the corner radius.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-lg">
+                    <div class="ribbon text-bg-info">
+                      <a href="#">Linked</a>
+                    </div>
+                  </div>
+                  <div class="card-body" style="min-height: 10rem">
+                    <h6>Interactive ribbon</h6>
+                    <p class="mb-0 pe-4">
+                      A ribbon can wrap a link. It inherits whatever contrast colour the utility
+                      picked, so the label stays readable in both colour modes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <!--end::Outside a card-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AdminLTE v4 | Angular 19+</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Font: Source Sans 3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" />
+
+  <!-- Theme Init Script (prevents flash of incorrect theme on load) -->
+  <script>
+    (() => {
+      'use strict';
+      const root = document.documentElement;
+      const STORAGE_KEY = 'lte-theme';
+      let stored = null;
+      try {
+        stored = localStorage.getItem(STORAGE_KEY);
+      } catch (e) {}
+      let resolved = 'light';
+      if (stored === 'dark' || stored === 'light') {
+        resolved = stored;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        resolved = 'dark';
+      }
+      root.setAttribute('data-bs-theme', resolved);
+      root.style.colorScheme = resolved;
+    })();
+  </script>
+</head>
+<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg bg-body-tertiary">
+  <app-root></app-root>
+</body>
+</html>
